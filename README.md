@@ -9,11 +9,11 @@ Feature flags are often introduced for temporary rollouts, but over time they ac
 FlipTheFlags scans a repository to identify feature flags and analyze how they are used across the codebase.
 Each flag is classified into one of three categories:
 
-1.Danger : Flags that control critical runtime behavior and pose high risk
+1. Danger : Flags that control critical runtime behavior and pose high risk
 
-2.Needs Fixing : Flags with unresolved or unclear intent
+2. Needs Fixing : Flags with unresolved or unclear intent
 
-3.Obsolete / Remove : Flags that are hardcoded and no longer provide runtime control
+3. Obsolete / Remove : Flags that are hardcoded and no longer provide runtime control
 
 For every flag, FlipTheFlags generates a concise, human readable explanation written like a senior engineer’s code review comment. 
 It also reports how many lines of code 
@@ -32,13 +32,13 @@ A small sample repository with feature flags is included for demonstration.
 
 ## Design Principles
 
-1.No automatic refactoring or code modification
+1. No automatic refactoring or code modification
 
-2.No enforcement or certainty claims
+2. No enforcement or certainty claims
 
-3.Focus on surfacing risk and context, not “fixing” code
+3. Focus on surfacing risk and context, not “fixing” code
 
-4.Explanations over metrics
+4. Explanations over metrics
 
 FlipTheFlags is designed to support engineering judgment, not replace it.
 
@@ -48,18 +48,20 @@ These repositories are used solely for demonstration and evaluation purposes.
 
 ## Limitations :
 
-1.Static analysis only (no runtime tracing)
+1. Static analysis only (no runtime tracing)
 
-2.Dependency counts are approximate
+2. Dependency counts are approximate
 
-3.Flag detection is language limited in the current version
+3. Flag detection is language limited in the current version
+
+4. Gemini API usage is subject to rate limits; when limits are reached, the tool falls back to deterministic local reasoning to maintain consistent output.
 
 ## Future Work:
 
-1.Support for additional languages and configuration based flags
+1. Support for additional languages and configuration based flags
 
-2.CI/CD integration for pull request feedback
+2. CI/CD integration for pull request feedback
 
-3.Historical analysis of flag risk over time
+3. Historical analysis of flag risk over time
 
-4.Improved dependency and execution path analysis
+4. Improved dependency and execution path analysis
