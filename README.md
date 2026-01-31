@@ -1,5 +1,8 @@
 # FlipTheFlags
 
+**Entry point:** `gemini_reason.py`
+
+
 FlipTheFlags is a Gemini powered developer tool that analyzes feature flags in real codebases and explains which ones are dangerous, obsolete, or need cleanup and why.
 Feature flags are often introduced for temporary rollouts, but over time they accumulate technical debt. FlipTheFlags helps engineers answer a critical question:
 
