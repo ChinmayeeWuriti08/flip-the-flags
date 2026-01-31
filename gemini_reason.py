@@ -2,17 +2,13 @@ import os
 from google import genai
 from scan_flags import scan_flags
 
-# =========================
-# CONFIG
-# =========================
-REASONING_MODE = "local"  # change to "gemini" tomorrow
+
+REASONING_MODE = "local"  
 REPO_PATH = "sample_repo"
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-# =========================
-# UTILS
-# =========================
+
 def extract_category(output):
     for line in output.splitlines():
         line = line.strip()
@@ -34,9 +30,7 @@ def count_flag_dependencies(flag_name, folder_path):
     return count
 
 
-# =========================
-# SIGNAL DERIVATION
-# =========================
+
 def derive_signals(flag, dependency_count):
     snippet = flag["code"].lower()
 
@@ -48,9 +42,6 @@ def derive_signals(flag, dependency_count):
     }
 
 
-# =========================
-# LOCAL REASONING
-# =========================
 def local_reasoning(flag, signals):
     if signals["controls_core_logic"] and not signals["hardcoded_flag"]:
         return f"""
@@ -101,9 +92,7 @@ Suggested Action:
 """
 
 
-# =========================
-# GEMINI REASONING
-# =========================
+
 def gemini_reasoning(flag, signals):
     prompt = f"""
 You are a senior software engineer reviewing feature flags in a long-lived codebase.
@@ -141,9 +130,7 @@ Suggested Action:
     return response.text
 
 
-# =========================
-# CLASSIFIER (SINGLE SOURCE OF TRUTH)
-# =========================
+
 def classify_flag(flag):
     dependency_count = count_flag_dependencies(flag["name"], REPO_PATH)
     # print(f"[DEBUG] {flag['name']} dependency lines = {dependency_count}")
@@ -155,9 +142,7 @@ def classify_flag(flag):
     return gemini_reasoning(flag, signals)
 
 
-# =========================
-# MAIN
-# =========================
+
 if __name__ == "__main__":
     flags = scan_flags(REPO_PATH)
 
