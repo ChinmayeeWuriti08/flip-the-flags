@@ -4,8 +4,8 @@ from scan_flags import scan_flags
 
 
 REASONING_MODE = "local"  
-# REPO_PATH = "sample_repo"
-REPO_PATH = r"D:\\Chinmayee\\HACAKTHON_work\\flagSEnse\\real_repo\\flask_realworld\\conduit"
+REPO_PATH = "sample_repo"
+# REPO_PATH = r"D:\\Chinmayee\\HACAKTHON_work\\flagSEnse\\real_repo\\flask_realworld\\conduit"
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 

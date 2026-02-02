@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 .env
+real_repo/flask_realworld/
+real_repo/flask_tutorial/
+realworld_repo/
