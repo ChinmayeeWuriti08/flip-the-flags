@@ -1,6 +1,6 @@
 # FlipTheFlags
 
-**Entry point:** `gemini_reason.py`
+**Entry point:** `gemini_reason_sample.py`
 
 
 FlipTheFlags is a Gemini powered developer tool that analyzes feature flags in real codebases and explains which ones are dangerous, obsolete, or need cleanup and why.
@@ -30,6 +30,35 @@ To ensure reliability during API rate limits, the tool includes a deterministic 
 ## How to Run
 
 `python gemini_reason.py`
+
+## How to Use FlipTheFlags
+
+
+### Prerequisites
+- Python 3.9 or higher
+  
+- A valid Gemini API key set as an environment variable
+
+` setx GEMINI_API_KEY "YOUR_API_KEY" `
+Step 1: Clone the repository
+
+` git clone https://github.com/ChinmayeeWuriti08/flip-the-flags.git `
+` cd flip-the-flags `
+
+Step 2: Run the demo on the included sample repository
+` python gemini_reason.py `
+This runs FlipTheFlags on the included sample_repo, which contains representative feature flags used in the demo video.
+
+Step 3: Run on a real codebase
+
+Provide the path to any Python project as a command-line argument.
+
+` python gemini_reason.py path/to/your/codebase `
+
+Example:
+
+` python gemini_reason.py real_repo/flask_realworld/conduit `
+
 
 A small sample repository with feature flags is included for demonstration.
 
