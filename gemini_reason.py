@@ -1,11 +1,11 @@
 import os
+import sys
 from google import genai
 from scan_flags import scan_flags
 
 
 REASONING_MODE = "local"  
-# REPO_PATH = "sample_repo"
-REPO_PATH = r"D:\\Chinmayee\\HACAKTHON_work\\flagSEnse\\real_repo\\flask_realworld\\conduit"
+REPO_PATH = sys.argv[1] if len(sys.argv) > 1 else "sample_repo"
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
@@ -169,19 +169,21 @@ if __name__ == "__main__":
             results["Analysis Skipped"].append((flag["name"], output))
 
     print("\n===== FLAG SENSE REPORT =====\n")
+    
 
-    for category in ["Danger", "Needs Fixing", "Obsolete / Remove"]:
-        if results[category]:
-            print(f"{category.upper()} ({len(results[category])})\n")
+    if all(len(results[cat]) == 0 for cat in ["Danger", "Needs Fixing", "Obsolete / Remove"]):
+        print("No feature flags were detected in the scanned repository.")
+        print("This likely indicates a clean or a configuration light codebase.\n")
+    else:
+        for category in ["Danger", "Needs Fixing", "Obsolete / Remove"]:
+            if results[category]:
+                print(f"{category.upper()} ({len(results[category])})\n")
 
-            for item in results[category]:
-                print(f"Flag: {item['name']}")
-                print(f"Dependent code lines: {item['dependency_lines']}\n")
-                print(item["output"])
-                print("-" * 50)
-        print("-" * 50)
-
-
+                for item in results[category]:
+                    print(f"Flag: {item['name']}")
+                    print(f"Dependent code lines: {item['dependency_lines']}\n")
+                    print(item["output"])
+                    print("-" * 50)
     if results["Analysis Skipped"]:
         print("\nANALYSIS SKIPPED\n")
         for name, _ in results["Analysis Skipped"]:
