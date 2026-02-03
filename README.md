@@ -40,16 +40,22 @@ To ensure reliability during API rate limits, the tool includes a deterministic 
 - A valid Gemini API key set as an environment variable
 
 ` setx GEMINI_API_KEY "YOUR_API_KEY" `
-Step 1: Clone the repository
+##### Step 1: Clone the repository
 
 ` git clone https://github.com/ChinmayeeWuriti08/flip-the-flags.git `
+
+
 ` cd flip-the-flags `
 
-Step 2: Run the demo on the included sample repository
+##### Step 2: Run the demo on the included sample repository
+
+
 ` python gemini_reason.py `
+
+
 This runs FlipTheFlags on the included sample_repo, which contains representative feature flags used in the demo video.
 
-Step 3: Run on a real codebase
+##### Step 3: Run on a real codebase
 
 Provide the path to any Python project as a command-line argument.
 
